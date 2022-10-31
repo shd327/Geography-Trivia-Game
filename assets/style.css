@@ -26,3 +26,50 @@ body.correct{
 body.correct {
     background-color: var(--answer-wrong-color);
 }
+.container{
+    width:800px;
+    max-width:80%;
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding:10px;
+    box-shadow: 0 0 15px 2px;
+}
+.btn-layout{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    gap:10px;
+    margin:20px 0;
+}
+.btn{
+    background-color:darkorange;
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color:white;
+  
+}
+.btn:hover{
+    border-color: chartreuse;
+    opacity: 50%;
+}
+.btn.correct{
+    background-color: var(--answer-correct-color);
+}
+.btn.wrong {
+    background-color: var(--answer-wrong-color);
+}
+
+.start-btn, .next-btn{
+    font-size:2.0rem;
+    font-weight: bold;
+    padding:10px 20px
+}
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* justify-content: space-between; */
+}
+.hide{
+    display: none;
+}
