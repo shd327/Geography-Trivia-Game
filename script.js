@@ -4,10 +4,11 @@ const questionElement = document.getElementById('questions')
 const answerElements = document.getElementById('answers-btns')
 const questionContainer = document.getElementById('question-container');
 startButton.addEventListener('click', startGame);
+var timerElement = document.getElementById('timerText')
 
 var randomizeQuestions;
 var currentQuestionIndex;
-var timer = 1000;
+var timer = 10000;
 const questions = [
     {
         question: "what color is the sky",
@@ -61,12 +62,14 @@ function shuffle() {
 }
 
 function startGame() {
-     console.log("hello")
+    console.log("hello")
+    decrementTime()
     startButton.classList.add('hide')
     questionContainer.classList.remove('hide')
+    timerElement.innerText = timer;
     shuffle()
     setNextQuestion()
-    decrementTime()
+    
 }
 
 function setNextQuestion() {
@@ -120,12 +123,16 @@ function validate(e) {
 
 
 function decrementTime() {
-    if (timer !== -0) {
-       console.log("games over")
-    }
-    else if (timer <= 0) {
-         timer -= -1000
-        console.log("check if timer is over")
-    }
+    setInterval(function (){
+        if (timer === 0) {
+            console.log("games over")
+            console.log(timer)
+        }
+        else if (timer >= 0) {
+            timer -= 1000
+            timerElement.innerText = timer
+            console.log(timer)
+        }
+    }, 1000)
 }
 
