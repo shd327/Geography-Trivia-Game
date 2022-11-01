@@ -74,5 +74,11 @@ body.wrong {
     display: none;
 }
 #gameOver{
-    background-color: purple;
+    /* background-color: purple; */
+}
+#displayScore{
+    background-color:cornflowerblue
+}
+li:first-child{
+    background-color: chartreuse;
 }
