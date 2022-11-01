@@ -5,6 +5,8 @@ const answerElements = document.getElementById('answers-btns')
 const questionContainer = document.getElementById('question-container');
 startButton.addEventListener('click', startGame);
 var timerElement = document.getElementById('timerText')
+var bodyTag = document.querySelector('body')
+var gameOverElement = document.getElementById('gameOver')
 
 var randomizeQuestions;
 var currentQuestionIndex;
@@ -52,6 +54,27 @@ const questions = [
             
             ],
         isCorrect : "red"
+    },
+         {
+        question: "who is god",
+        answers: [
+            {
+                choice: 'jesus'
+            },
+               {
+                choice: 'shiva'
+            },
+            
+               {
+                choice: 'frank'
+            },
+               {
+                choice: 'tom'
+            },
+            
+            
+            ],
+        isCorrect : "tom"
     }
 ]
 
@@ -73,7 +96,11 @@ function startGame() {
 }
 
 function setNextQuestion() {
-    displayQuestions(randomizeQuestions[currentQuestionIndex])
+    if (randomizeQuestions[currentQuestionIndex] !== undefined) {
+        displayQuestions(randomizeQuestions[currentQuestionIndex])
+    } else {
+        gamerOver()
+    }
 }
 
 function selectAnswer(e) {
@@ -82,17 +109,23 @@ function selectAnswer(e) {
     var selectedQuestion = randomizeQuestions[currentQuestionIndex].question
     // alert()
     if (selectedButton !== correctAnswer) {
-        alert(selectedButton + "wrong")
+     
         wrongAnswerDecrement()
-    } else {
-         alert(selectedButton + "correct")
-    }
-    alert(selectedQuestion)
+        // setStatusWrong()
+    } 
+  
+
+        // setStatusCorrect()
+    
+    // alert(selectedQuestion)
     // nextButton.classList.remove("hide")
     currentQuestionIndex++
+    
 
     setNextQuestion()
+    
 
+  
 }
 
 function displayQuestions(question) {
@@ -103,6 +136,7 @@ function displayQuestions(question) {
 }
 function displayAnswers(question) {
 clearState()
+
     question.answers.forEach(answer => {
        const button = document.createElement('button');
        button.innerText = answer.choice
@@ -113,7 +147,7 @@ clearState()
 }
 
 function clearState() {
-
+// removeStatusColor()
     answerElements.textContent = "";
 }
 
@@ -150,4 +184,23 @@ function wrongAnswerDecrement() {
         }
   
 
+}
+
+function gamerOver() {
+    alert("game over")
+    gameOverElement.classList.remove('hide')
+    questionContainer.classList.add('hide')
+    
+
+}
+
+function setStatusCorrect() {
+    bodyTag.classList.add('correct')
+}
+function setStatusWrong() {
+    bodyTag.classList.add('wrong')
+}
+function removeStatusColor() {
+    bodyTag.classList.remove('wrong')
+    bodyTag.classList.remove('correct')
 }
