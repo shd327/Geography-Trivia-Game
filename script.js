@@ -82,7 +82,8 @@ function selectAnswer(e) {
     var selectedQuestion = randomizeQuestions[currentQuestionIndex].question
     // alert()
     if (selectedButton !== correctAnswer) {
-        alert(selectedButton + "wrong" )
+        alert(selectedButton + "wrong")
+        wrongAnswerDecrement()
     } else {
          alert(selectedButton + "correct")
     }
@@ -136,3 +137,17 @@ function decrementTime() {
     }, 1000)
 }
 
+function wrongAnswerDecrement() {
+       
+        if (timer === 0) {
+            console.log("games over")
+            console.log(timer)
+        }
+        else if (timer >= 0) {
+            timer -= 2000
+            timerElement.innerText = timer
+            console.log(timer)
+        }
+  
+
+}
