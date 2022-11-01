@@ -1,4 +1,5 @@
 const startButton = document.getElementById('start-btn');
+const nextButton = document.getElementById('next-btn');
 const questionElement = document.getElementById('questions')
 const answerElements = document.getElementById('answers-btns')
 const questionContainer = document.getElementById('question-container');
@@ -6,27 +7,50 @@ startButton.addEventListener('click', startGame);
 
 var randomizeQuestions;
 var currentQuestionIndex;
-
+var timer = 1000;
 const questions = [
     {
         question: "what color is the sky",
         answers: [
             {
-                choice: 'green', isCorrect: false
+                choice: '3'
+                // isCorrect: false
             },
                {
-                choice: 'black', isCorrect: false
+                choice: '5'
             },
             
                {
-                choice: 'red', isCorrect: false
+                choice: '4'
             },
                {
-                choice: 'blue', isCorrect: true
+                choice: 'blue'
+            },
+  
+            
+        ],
+        isCorrect: "blue",
+    },
+        {
+        question: "what color is an apple",
+        answers: [
+            {
+                choice: 'green'
+            },
+               {
+                choice: 'black'
+            },
+            
+               {
+                choice: 'red'
+            },
+               {
+                choice: 'blue'
             },
             
             
-        ]
+            ],
+        isCorrect : "red"
     }
 ]
 
@@ -41,28 +65,56 @@ function startGame() {
     startButton.classList.add('hide')
     questionContainer.classList.remove('hide')
     shuffle()
-   setNextQuestion()
+    setNextQuestion()
 }
 
 function setNextQuestion() {
     displayQuestions(randomizeQuestions[currentQuestionIndex])
 }
 
-function selectAnswer() {
-    
+function selectAnswer(e) {
+    var selectedButton = e.target.innerText
+    var correctAnswer = randomizeQuestions[currentQuestionIndex].isCorrect
+    var selectedQuestion = randomizeQuestions[currentQuestionIndex].question
+    // alert()
+    if (selectedButton !== correctAnswer) {
+        alert(selectedButton + "wrong" )
+    } else {
+         alert(selectedButton + "correct")
+    }
+    alert(selectedQuestion)
+    // nextButton.classList.remove("hide")
+    currentQuestionIndex++
+
+    setNextQuestion()
+
 }
 
 function displayQuestions(question) {
+    
     questionElement.innerText = question.question
     displayAnswers(question)
     
 }
 function displayAnswers(question) {
+clearState()
     question.answers.forEach(answer => {
        const button = document.createElement('button');
        button.innerText = answer.choice
-          button.classList.add('btn') 
+        button.classList.add('btn') 
         answerElements.appendChild(button)
-        button.addEventListener('click', displayAnswers)
+        button.addEventListener('click', selectAnswer)
    });
 }
+
+function clearState() {
+
+    answerElements.textContent = "";
+}
+
+
+function validate(e) {
+    // alert(e.target.innerText)
+}
+
+
