@@ -66,6 +66,7 @@ function startGame() {
     questionContainer.classList.remove('hide')
     shuffle()
     setNextQuestion()
+    decrementTime()
 }
 
 function setNextQuestion() {
@@ -117,4 +118,14 @@ function validate(e) {
     // alert(e.target.innerText)
 }
 
+
+function decrementTime() {
+    if (timer !== -0) {
+       console.log("games over")
+    }
+    else if (timer <= 0) {
+         timer -= -1000
+        console.log("check if timer is over")
+    }
+}
 
