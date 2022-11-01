@@ -1,5 +1,5 @@
 const startButton = document.getElementById('start-btn');
-const nextButton = document.getElementById('next-btn');
+const nextButton = document.getElementById('playAgain-btn');
 const questionElement = document.getElementById('questions')
 const answerElements = document.getElementById('answers-btns')
 const questionContainer = document.getElementById('question-container');
@@ -18,84 +18,167 @@ var timer = 10000;
 var clock;
 const questions = [
     {
-        question: "what color is the sky",
+        question: "What is the name of the tallest mountain in the world?",
         answers: [
             {
-                choice: '3'
-                // isCorrect: false
+                choice: 'Mount Everest'
             },
                {
-                choice: '5'
+                choice: 'Mount Kilimanjaro'
             },
             
                {
-                choice: '4'
+                choice: 'Mount Makalu'
             },
                {
-                choice: 'blue'
+                choice: 'Mount Kanchendzonga'
             },
   
             
         ],
-        isCorrect: "blue",
+        isCorrect: "Mount Everest",
     },
         {
-        question: "what color is an apple",
+        question: "What is the only country that borders the United Kingdom",
         answers: [
             {
-                choice: 'green'
+                choice: 'Scotland'
             },
                {
-                choice: 'black'
+                choice: 'Ireland'
             },
             
                {
-                choice: 'red'
+                choice: 'Wales'
             },
                {
-                choice: 'blue'
+                choice: 'Germany'
             },
             
             
             ],
-        isCorrect : "red"
+        isCorrect : "Ireland"
     },
          {
-        question: "who is god",
+        question: "Which continent is in all four hemispheres?",
         answers: [
             {
-                choice: 'jesus'
+                choice: 'Asia'
             },
                {
-                choice: 'shiva'
+                choice: 'Europe'
             },
             
                {
-                choice: 'frank'
+                choice: 'North America'
             },
                {
-                choice: 'tom'
+                choice: 'Africa'
             },
             
             
             ],
-        isCorrect : "tom"
+        isCorrect : "Africa"
+    },
+         {
+        question: "What is the name of the longest river in Africa?",
+        answers: [
+            {
+                choice: 'The Nile River'
+            },
+               {
+                choice: 'The Orange River'
+            },
+            
+               {
+                choice: 'The Congo River'
+            },
+               {
+                choice: 'The Zambezi River'
+            },
+            
+            
+            ],
+        isCorrect : "The Nile River"
+    },
+         {
+        question: "What American city is the Golden Gate Bridge located in?",
+        answers: [
+            {
+                choice: 'New York City'
+            },
+               {
+                choice: 'Buffalo'
+            },
+            
+               {
+                choice: 'Denver'
+            },
+               {
+                choice: 'San Francisco'
+            },
+            
+            
+            ],
+        isCorrect : "San Francisco"
+    },
+         {
+        question: " What U.S. state is home to no documented poisonous snakes?",
+        answers: [
+            {
+                choice: 'Colordo'
+            },
+               {
+                choice: 'New Jersey'
+            },
+            
+               {
+                choice: 'Alaska'
+            },
+               {
+                choice: 'Florida'
+            },
+            
+            
+            ],
+        isCorrect : "Alaska"
+    },
+         {
+        question: "What is the capital of Canada?",
+        answers: [
+            {
+                choice: 'Toronto'
+            },
+               {
+                choice: 'Québec City'
+            },
+            
+               {
+                choice: 'Ottawa'
+            },
+               {
+                choice: 'Montreal'
+            },
+            
+            
+            ],
+        isCorrect : "Ottawa"
     }
 ]
 
-// function shuffle() {
+function shuffle() {
     randomizeQuestions = questions.sort(() => Math.random() - .5)
 
     // currentQuestionIndex = 0;
-// }
+}
 
 function startGame() {
-
+    shuffle()
     decrementTime()
     startButton.classList.add('hide')
     questionContainer.classList.remove('hide')
     timerElement.innerText = timer;
-    // shuffle()
+   
     setNextQuestion()
     
 }
@@ -112,20 +195,18 @@ function selectAnswer(e) {
     removeStatusColor()
     var selectedButton = e.target.innerText
     var correctAnswer = randomizeQuestions[currentQuestionIndex].isCorrect
-    // var selectedQuestion = randomizeQuestions[currentQuestionIndex].question
-    // alert()
+
     if (selectedButton !== correctAnswer) {
      
         wrongAnswerDecrement()
         setStatusWrong()
-        // setTimeout(setStatusWrong, 1000)
+
     }
     
     else {
         setStatusCorrect()
     }
-    // alert(selectedQuestion)
-    // nextButton.classList.remove("hide")
+
     currentQuestionIndex++
        
     
@@ -147,7 +228,8 @@ function displayQuestions(question) {
     
 }
 function displayAnswers(question) {
-clearState()
+    clearState()
+    
 
     question.answers.forEach(answer => {
        const button = document.createElement('button');
@@ -207,29 +289,29 @@ function wrongAnswerDecrement() {
 }
 
 function gamerOver() {
-    //   removeStatusColor()
+  
     displayScores.classList.remove("hide")
     gameOverElement.classList.remove('hide')
     questionContainer.classList.add('hide')
-    // var parseScores = JSON.parse(localStorage.getItem("scores"))
-    // for (let i = 0; i < parseScores.length; i++){
-    //     var li = document.createElement('li')
-    //     li.textContent = parseScores[i].initials + " " + parseScores[i].score
-    //     finalScoresDisplay.appendChild(li)
-    // }
+
     
 }
 
+nextButton.addEventListener("click", function () {
+    gamerOver()
+    startGame()
+   location.reload()
+})
 
 function ScoreDisplay() {
-      removeStatusColor()
+    removeStatusColor()
+    nextButton.classList.remove('hide')
     displayScores.classList.add("hide")
     var parseScores = JSON.parse(localStorage.getItem("scores"))
     var sorted = parseScores
     sorted.sort(function (a, b) {
     return b.score - a.score
     })
-    console.log(sorted)
    
         for (let i = 0; i < sorted.length; i++){
         var li = document.createElement('li')
@@ -239,12 +321,12 @@ function ScoreDisplay() {
 }
 
 function setStatusCorrect() {
-    // removeStatusColor()
+
     bodyTag.classList.add('correct')
     
 }
 function setStatusWrong() {
-    // removeStatusColor()
+
     bodyTag.classList.add('wrong')
 }
 function removeStatusColor() {
@@ -265,7 +347,6 @@ submitAnswer.addEventListener("click", function (event) {
     }
     if (localStorage.getItem("scores")) {
          finalScores = JSON.parse(localStorage.getItem("scores"))
-        // finalScores.push(JSON.parse(localStorage.getItem("scores")))
     }
     else {
         finalScores = [];

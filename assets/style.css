@@ -59,7 +59,7 @@ body.wrong {
     background-color: var(--answer-wrong-color);
 }
 
-.start-btn, .next-btn{
+.start-btn, .playAgain-btn{
     font-size:2.0rem;
     font-weight: bold;
     padding:10px 20px
