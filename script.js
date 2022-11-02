@@ -1,6 +1,6 @@
 // Query selectors to grab HTML elements
 const startButton = document.getElementById("start-btn");
-const nextButton = document.getElementById("playAgain-btn");
+const playAgainBTN = document.getElementById("playAgain-btn");
 const questionElement = document.getElementById("questions");
 const answerElements = document.getElementById("answers-btns");
 const questionContainer = document.getElementById("question-container");
@@ -186,6 +186,11 @@ function setNextQuestion() {
   }
 }
 
+// This function will grab the selected answer and save the the text to selectedButton
+// Then we grab the correct answer from the current randomizeQuestions array index and save it to correct answer
+// Using a if statement we check if the text of button click event matches the string isCorrect of the current array index
+// if they dont match it runs the wrongAnswerDecrement()
+// Then we increment the currentIndex by 1 and invoke the setNextQuestion() function
 function selectAnswer(e) {
   removeStatusColor();
   var selectedButton = e.target.innerText;
@@ -228,6 +233,12 @@ function clearState() {
   answerElements.textContent = "";
 }
 
+// checks if the current index is undefine and clearsInterval if condition is met
+// else it runs set interval and checks the following
+// if timer is greater than 0 decrement timer by 1
+// displays timer value to html element
+// else if timer <=0 it clears the interval and runs gameOver function
+// finally it saves the timer value to global var Clock which is used later for local storage
 function decrementTime() {
   if (randomizeQuestions[currentQuestionIndex] == undefined) {
     clearInterval(clock);
@@ -244,6 +255,9 @@ function decrementTime() {
   }
 }
 
+// This function decrements the current timer value by 15
+// if timer is less than 0 it resets the timer value to 0 to prevent negative values
+// If timer is equal to 0 it runs game over function
 function wrongAnswerDecrement() {
   timer -= 15;
   if (timer < 0) {
@@ -254,7 +268,7 @@ function wrongAnswerDecrement() {
     gamerOver();
   }
 }
-
+// This function hides the question container and displays the html element for adding initals
 function gamerOver() {
   clearInterval(clock);
   displayScores.classList.remove("hide");
@@ -262,15 +276,19 @@ function gamerOver() {
   questionContainer.classList.add("hide");
 }
 
-nextButton.addEventListener("click", function () {
-  gamerOver();
-  startGame();
+// If user clicks playAgain button
+// reloads the the window and invoked startGame() function
+playAgainBTN.addEventListener("click", function () {
   location.reload();
+  startGame();
 });
 
+// Gets "scores" from local storage and saves the array to var sorted
+// using .sort() the sorted array is now sorted from largest to smallest score value
+// Using a for loop I loop through the sorted array and create li elements and append it to the ul element
 function ScoreDisplay() {
   removeStatusColor();
-  nextButton.classList.remove("hide");
+  playAgainBTN.classList.remove("hide");
   clearScores.classList.remove("hide");
   displayScores.classList.add("hide");
   var parseScores = JSON.parse(localStorage.getItem("scores"));
@@ -285,18 +303,28 @@ function ScoreDisplay() {
     finalScoresDisplay.appendChild(li);
   }
 }
-
+// Styling for background color correct answer
 function setStatusCorrect() {
   bodyTag.classList.add("correct");
 }
+// Styling for background color wrong answer
 function setStatusWrong() {
   bodyTag.classList.add("wrong");
 }
+// removes background color for wrong or correct answer
 function removeStatusColor() {
   bodyTag.classList.remove("wrong");
   bodyTag.classList.remove("correct");
 }
 
+// Upon submit button click event the following will excute
+// we save the input text of the users initials to new var
+// We create a scoreObject and save the initial and the current timer value to scores
+// We then grab the scores array from local storage and save it the global variable finalScores
+// if there is no scores in global storage we set finalScores to an empty array
+// We then push the new scores object to finalScores array
+// Then we added our finalScores to the scores in local storage
+// Then we invoke the function ScoreDisplay()
 submitAnswer.addEventListener("click", function (event) {
   event.preventDefault();
   var initialEL = initial.value;
@@ -313,7 +341,7 @@ submitAnswer.addEventListener("click", function (event) {
   localStorage.setItem("scores", JSON.stringify(finalScores));
   ScoreDisplay();
 });
-
+// Clears local storage
 clearScores.addEventListener("click", function () {
   localStorage.clear();
   location.reload();
