@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href ="assets/style.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/style.css" rel="stylesheet" />
 
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <div class = "container">
-            <h1 id ="timerText"></h1>
+      <div class="container">
+        <h1 id="timerText"></h1>
         <div id="question-container" class="hide">
-        <div id="questions">Questions</div>
-        <div id="answers-btns" class="btn-layout">
+          <div id="questions">Questions</div>
+          <div id="answers-btns" class="btn-layout"></div>
         </div>
-        </div>
-        <div id ="gameOver" class="hide">
-            <h1>You completed the game</h1>
-            <ul id="finalScoresDisplay">
-
-            </ul>
+        <div id="gameOver" class="hide">
+          <h1>You completed the game</h1>
+          <ul id="finalScoresDisplay"></ul>
         </div>
         <div id="displayScore" class="hide">
-<form >
-  <label for="initial">initial</label>
-  <input type="text" id="initial" name="initial"><br><br>
-  <button type="submit" id="submit-answer" >Submit</button>
-
-</form>
+          <form>
+            <label for="initial">initial</label>
+            <input type="text" id="initial" name="initial" /><br /><br />
+            <button type="submit" id="submit-answer">Submit</button>
+          </form>
         </div>
-        <div class ="controls">
-             <button id="start-btn" class="start-btn btn">Start</button>
-             <button id="playAgain-btn" class="playAgain-btn btn hide">Play Again</button>
+        <div class="controls">
+          <button id="start-btn" class="start-btn btn">Start</button>
+          <button id="playAgain-btn" class="playAgain-btn btn hide">
+            Play Again
+          </button>
+          <button id="clearScores-btn" class="clearScores-btn btn hide">
+            Clear Score List
+          </button>
         </div>
-        </div>
+      </div>
     </main>
-        <script src="./script.js"></script>
-</body>
+    <script src="./script.js"></script>
+  </body>
 </html>
