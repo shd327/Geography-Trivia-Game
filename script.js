@@ -17,6 +17,7 @@ var isAnswerDisplay = document.getElementById("isAnswerDisplay")
 var showAnswer = document.getElementById("showAnswer")
 var displayAnswerList = document.getElementById("displayAnswerList")
 var displayArrayScore = [];
+var gameRules = document.getElementById("gameRules")
 // var finalScoresDisplay = document.getElementById("finalScoresDisplay")
 
 // Global variables
@@ -173,6 +174,7 @@ function shuffle() {
 // Sets timerElement text to initial timer value set globally
 // Invokes setNextQuestion Function
 function startGame() {
+    gameRules.classList.add('hide')
     showAnswer.classList.add("hide")
     displayAnswerList.classList.add("hide")
     shuffle();
@@ -190,7 +192,7 @@ function setNextQuestion() {
     if (randomizeQuestions[currentQuestionIndex] !== undefined) {
         displayQuestions(randomizeQuestions[currentQuestionIndex]);
     } else {
-        gamerOver();
+        gameOver();
     }
 }
 
@@ -263,7 +265,7 @@ function decrementTime() {
                 timerElement.innerText = timer;
             } else if (timer <= 0) {
                 clearInterval(clock);
-                gamerOver();
+                gameOver();
             }
         }, 1000);
     }
@@ -279,17 +281,18 @@ function wrongAnswerDecrement() {
     }
     timerElement.innerText = timer;
     if (timer === 0) {
-        gamerOver();
+        gameOver();
     }
 }
 // This function hides the question container and displays the html element for adding initals
-function gamerOver() {
+function gameOver() {
     displayAnswerList.classList.remove("hide")
     clearInterval(clock);
-    showAnswer.classList.add("hide")
+    showAnswer.remove()
     displayScores.classList.remove("hide");
     gameOverElement.classList.remove("hide");
     questionContainer.classList.add("hide");
+
     displayIncorrectAnswers()
 }
 
@@ -372,23 +375,22 @@ clearScores.addEventListener("click", function () {
     location.reload();
 });
 
+// Displays all wrong answers to HTML
 function displayIncorrectAnswers() {
 
     for (let i = 0; i < displayArrayScore.length; i++) {
         let listItem = document.createElement("li");
         listItem.classList.remove("li")
-        listItem.textContent = `question ${i + 1} : ${displayArrayScore[i].question}  
-         your answer:  ${displayArrayScore[i].wrong} 
+        listItem.textContent = `question ${i + 1} : ${displayArrayScore[i].question}, 
+         your answer:  ${displayArrayScore[i].wrong},
          correct answer:  ${displayArrayScore[i].right}`
-        // listItem.textContent = `question ${i} : ${displayArrayScore[i].question}`
         displayAnswerList.appendChild(listItem)
 
 
 
     }
 }
-
+// removes UL element
 function clearStateListItem() {
     displayAnswerList.remove();
-    // console.log(displayAnswerList.childNodes.values)
 }
