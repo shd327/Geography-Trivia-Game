@@ -21,7 +21,7 @@ This project improved my knowledge and understanding of Javascript and how to ma
 
 <br/>
 
-![](./Assets/img/)
+![](./assets/img/chrome_wGfccehj59.gif)
 
 
 
