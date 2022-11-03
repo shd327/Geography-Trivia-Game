@@ -50,6 +50,6 @@ https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap
 This project is free use
 
 ## Links
-https://github.com/shd327/Geography-Trivia-Game
-https://shd327.github.io/Geography-Trivia-Game/
+* https://github.com/shd327/Geography-Trivia-Game
+* https://shd327.github.io/Geography-Trivia-Game/
 
