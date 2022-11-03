@@ -42,9 +42,7 @@ Cell: 908-883-0191
 https://www.w3schools.com/jsref/met_document_getelementbyid.asp
 https://www.w3schools.com/jsref/prop_html_id.asp
 https://www.w3schools.com/jsref/prop_win_localstorage.asp
-https://cssgradient.io/gradient-backgrounds/
-https://fonts.google.com/specimen/Indie+Flower?query=flower
-https://fonts.google.com/specimen/Acme?query=acme
+https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap
 --- 
 
 ## License
