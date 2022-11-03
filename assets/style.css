@@ -41,14 +41,23 @@ body.wrong {
   background-color: var(--answer-wrong-color);
 }
 #gameRules h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: var(--display-flex);
+  justify-content: var(--center);
+  align-items: var(--center);
+  font-size: 2.5rem;
+}
+form {
+  font-family: "Fuzzy Bubbles", cursive;
+  font-weight: bold;
 }
 #gameRules p {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: var(--display-flex);
+  justify-content: var(--center);
+  align-items: var(--center);
+  font-size: 1.5rem;
+}
+#initial:hover {
+  background-color: var(--orange-color);
 }
 .container {
   width: 800px;
