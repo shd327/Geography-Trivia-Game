@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="assets/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Document</title>
   </head>
@@ -16,18 +22,22 @@
           <div id="questions">Questions</div>
           <div id="answers-btns" class="btn-layout"></div>
         </div>
+
         <div id="gameOver" class="hide">
           <h1>You completed the game</h1>
+          <ul id="displayAnswerList"></ul>
           <ul id="finalScoresDisplay"></ul>
         </div>
         <div id="displayScore" class="hide">
           <form>
-            <label for="initial">initial</label>
+            <label for="initial">initials</label>
             <input type="text" id="initial" name="initial" /><br /><br />
-            <button type="submit" id="submit-answer">Submit</button>
+            <button type="submit" id="submit-answer" class="submit-btn">
+              Submit
+            </button>
           </form>
         </div>
-        <div class="controls">
+        <div class="controls-btns">
           <button id="start-btn" class="start-btn btn">Start</button>
           <button id="playAgain-btn" class="playAgain-btn btn hide">
             Play Again
@@ -36,6 +46,7 @@
             Clear Score List
           </button>
         </div>
+        <h1 id="showAnswer"></h1>
       </div>
     </main>
     <script src="./script.js"></script>
